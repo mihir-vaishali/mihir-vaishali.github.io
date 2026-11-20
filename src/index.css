@@ -1,0 +1,188 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Design tokens
+   ------------------------------------------------------------------------ */
+@theme {
+  --font-body: "Dancing Script", cursive;
+  --font-script: "Dancing Script", cursive;
+  --font-display: "Tangerine", cursive;
+
+  --color-wine-50: #fff5f5;
+  --color-wine-100: #ffe0e0;
+  --color-wine-200: #ffb3b3;
+  --color-wine-300: #ff6666;
+  --color-wine-400: #cc0000;
+  --color-wine-500: #a50000;
+  --color-wine-600: #8b0000;
+  --color-wine-700: #6b0000;
+  --color-wine-800: #4a0000;
+
+  --color-mauve: #8b0000;
+  --color-blush: #cc2200;
+  --color-ink: #5c0000;
+
+  --color-gold-100: #f7e7a9;
+  --color-gold-500: #d4af37;
+  --color-gold-700: #7d4f00;
+  --color-cream: #fff8ef;
+
+  --shadow-card: 0 15px 40px rgb(0 0 0 / 0.25);
+  --shadow-soft: 0 10px 30px rgb(0 0 0 / 0.15);
+  --shadow-float: 0 8px 25px rgb(0 0 0 / 0.25);
+
+  --animate-heartbeat: heartbeat 1.5s ease-in-out infinite;
+  --animate-shine: shine 6s linear infinite;
+  --animate-fall: fall linear infinite;
+  --animate-fade-in: fade-in 1s ease forwards;
+  --animate-slide-down: slide-down 1.5s ease forwards;
+  --animate-slide-up: slide-up 1.5s ease forwards;
+  --animate-zoom-in: zoom-in 1s ease forwards;
+  --animate-bounce-in: bounce-in 1s ease forwards;
+}
+
+@keyframes heartbeat {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes shine {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-50px) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(120vh) rotate(720deg);
+    opacity: 0.8;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-140px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(140px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+   ------------------------------------------------------------------------ */
+@layer base {
+
+  /* The source design relies on the browser default (`normal`) line height,
+     not Preflight's 1.5 — restoring it keeps every heading at its intended
+     height. Components opt back in per element where the design calls for it. */
+  html {
+    line-height: normal;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-wine-500);
+    outline-offset: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  [data-animate] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
